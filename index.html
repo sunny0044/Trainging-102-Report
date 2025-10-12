@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training TR-102 Report</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #1E1E1E;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 8px rgba(123, 123, 123, 0.1);
+            border-radius: 10px;
+        }
+        li {
+            font-size: 19px;
+            /* font-weight: bold; */
+        }
+
+        header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #000000, #2d4b7e);
+            padding: 10px 20px;
+            color: #fff;
+            border-radius: 10px 10px 0 0;
+        }
+        header img {
+            height: 50px;
+            margin: 5px 0;
+            max-width: 100%;
+        }
+        header .home-button {
+            background-color: #3c566f;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 5px 0;
+        }
+        header .home-button:hover {
+            background-color: #000000;
+        }
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        nav a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .project-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Center the buttons */
+            margin: 20px 0;
+        }
+        .project-button {
+            background-color: #888954;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            padding: 10px 20px;
+        }
+        .project-button:hover {
+            background-color: #666;
+        }
+        nav a:hover {
+            background-color: #2980b9;
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        h1, h2, p {
+            text-align: center;
+            color : #1E1E1E
+        }
+        .pdf-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .pdf-container iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .gallery {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .gallery img {
+            width: 100%;
+            display: none;
+            transition: opacity 1s ease-in-out;
+        }
+        .gallery img.active {
+            display: block;
+            opacity: 1;
+        }
+        .gallery .caption { 
+            text-align: center;
+            margin-top: 10px;
+            color: #000000;
+            font-size: 20px;
+            display: none;
+        }
+        .gallery .caption.active {
+            display: block;
+        }
+        .certificate-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .certificate-container img {
+            max-width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            background: linear-gradient(to right, #2d4b7e, #000000);
+            color: #fff;
+            border-radius: 0 0 10px 10px;
+        }
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+            }
+            header .home-button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+            header img {
+                height: 40px;
+            }
+            .pdf-container iframe {
+                height: 400px;
+            }
+            .gallery img {
+                width: 100%;
+            }
+        }
+    </style>
+    </head>
+<body>
+    <div class="container">
+        <header>
+            <a href="https://www.gndec.ac.in/"><img src="gndecLogo.png" alt="GNDEC Logo"></a>
+            <a href="#" class="home-button" onclick="showSection('home')">Home</a>
+            <a href="https://anshinfotech.org/"><img src="aitlogo.png" alt="AIT Logo"></a>
+        </header>
+        
+
+        <section id="home" class="section active">
+            <h1>Training TR-102 Report</h1>
+            <p>By Ritesh Kumar Gupta, URN 2302650 <br> Guru Nanak Dev Engineering College Ludhiana</p>
+            <h2>4 Week training at <br> Ansh Infotech</h2>
+        </section>
+        <nav>
+            <a style="background-color: rgb(0, 199, 156);" href="#" onclick="showSection('certificate')">Training Certificate</a>
+            <br>
+            <a style="background-color: rgb(0, 199, 156);" href="#" onclick="showSection('Final-Report')">Final Report</a>
+            <br>
+            <a href="#" onclick="showSection('day1')">Day 1</a>
+            <a href="#" onclick="showSection('day2')">Day 2</a>
+            <a href="#" onclick="showSection('day3')">Day 3</a>
+            <a href="#" onclick="showSection('day4')">Day 4</a>
+            <a href="#" onclick="showSection('day5')">Day 5</a>
+            <a href="#" onclick="showSection('day6')">Day 6</a>
+            <a href="#" onclick="showSection('day7')">Day 7</a>
+            <a href="#" onclick="showSection('day8')">Day 8</a>
+            <a href="#" onclick="showSection('day9')">Day 9</a>
+            <a href="#" onclick="showSection('day10')">Day 10</a>
+            <a href="#" onclick="showSection('day11')">Day 11</a>
+            <a href="#" onclick="showSection('day12')">Day 12</a>
+            <a href="#" onclick="showSection('day13')">Day 13</a>
+            <a href="#" onclick="showSection('day14')">Day 14</a>
+            <a href="#" onclick="showSection('day15')">Day 15</a>
+            <a href="#" onclick="showSection('day16')">Day 16</a>
+            <a href="#" onclick="showSection('day17')">Day 17</a>
+            <a href="#" onclick="showSection('day18')">Day 18</a>
+            <a href="#" onclick="showSection('day19')">Day 19</a>
+            <a href="#" onclick="showSection('day20')">Day 20</a>
+            <a href="#" onclick="showSection('day21')">Day 21</a>
+            <a href="#" onclick="showSection('day22')">Day 22</a>
+            <a href="#" onclick="showSection('day23')">Day 23</a>
+            <a href="#" onclick="showSection('day24')">Day 24</a>
+            <a href="#" onclick="showSection('day25')">Day 25</a>
+            <a href="#" onclick="showSection('day26')">Day 26</a>
+            <a href="#" onclick="showSection('day27')">Day 27</a>
+            <a href="#" onclick="showSection('day28')">Day 28</a>
+            <br>
+            <a href="#" onclick="showSection('gallery')">Gallery</a>
+             <br>
+            <a style="background-color: rgb(13, 0, 113);" href="#" onclick="showSection('projects')">Projects</a>
+        </nav>
+        <section id="certificate" class="section">
+            <h1>Certificate</h1>
+            <div class="certificate-container">
+                <img src="TC.jpg" alt="Training Certificate">
+                <img src="Skill_India.png" alt="Training Certificate">
+            </div>
+        </section> 
+        <section id="Final-Report" class="section">
+            <h1>Final Report</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Final Report.pdf"></iframe>
+            </div>
+        </section> 
+        <section id="day1" class="section">
+            <h1>Training Report Day 1</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day1.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day2" class="section">
+            <h1>Training Report Day 2</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day2.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day3" class="section">
+            <h1>Training Report Day 3</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day3.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day4" class="section">
+            <h1>Training Report Day 4</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day4.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day5" class="section">
+            <h1>Training Report Day 5</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day5.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day6" class="section">
+            <h1>Training Report Day 6</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day6.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day7" class="section">
+            <h1>Training Report Day 7</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day7.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day8" class="section">
+            <h1>Training Report Day 8</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day8.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day9" class="section">
+            <h1>Training Report Day 9</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day9.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day10" class="section">
+            <h1>Training Report Day 10</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day10.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day11" class="section">
+            <h1>Training Report Day 11</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day11.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day12" class="section">
+            <h1>Training Report Day 12</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day12.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day13" class="section">
+            <h1>Training Report Day 13</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day13.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day14" class="section">
+            <h1>Training Report Day 14</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day14.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day15" class="section">
+            <h1>Training Report Day 15</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day15.pdf"></iframe>
+            </div> 
+        </section>
+        <section id="day16" class="section">
+            <h1>Training Report Day 16</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day16.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day17" class="section">
+            <h1>Training Report Day 17</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day17.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day18" class="section">
+            <h1>Training Report Day 18</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day18.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day19" class="section">
+            <h1>Training Report Day 19</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day19.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day20" class="section">
+            <h1>Training Report Day 20</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day20.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day21" class="section">
+            <h1>Training Report Day 21</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day21.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day22" class="section">
+            <h1>Training Report Day 22</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day22.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day23" class="section">
+            <h1>Training Report Day 23</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day23.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day24" class="section">
+            <h1>Training Report Day 24</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day24.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day25" class="section">
+            <h1>Training Report Day 25</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day25.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day26" class="section">
+            <h1>Training Report Day 26</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day26.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day27" class="section">
+            <h1>Training Report Day 27</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day27.pdf"></iframe>
+            </div>
+        </section>
+        <section id="day28" class="section">
+            <h1>Training Report Day 28</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Day28.pdf"></iframe>
+            </div>
+        </section>
+
+        <section id="gallery" class="section">
+            <h2>Gallery</h2>
+            <div class="gallery">
+                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/Aircrack.jpeg" alt="Aircrack-ng">
+                <div class="caption">Aircrack-ng</div>
+                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/airgeddon.jpeg" alt="Airgeddon">
+                <div class="caption">Airgeddon</div>
+                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/Android HAcking.png" alt="Android HAcking">
+                <div class="caption">Android Hacking</div>
+                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/Burpsuite Pro.png" alt="Burpsuite Pro">
+                <div class="caption">Burpsuite Professional</div>
+                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/CAmphish.jpeg" alt="Camphish">
+                <div class="caption">Camphish</div>
+                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/zphisher.png" alt="Zphisher">
+                <div class="caption">Zphisher</div>
+                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/XERXES.jpeg" alt="XERXES">
+                <div class="caption">XERXES</div>
+                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/esp8266.jpeg" alt="ESP8266">
+                <div class="caption">ESP8266</div>
+                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/foxy proxy.png" alt="FOXY PROXY">
+                <div class="caption">Foxy Proxy</div>
+                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/metaspliotable.png" alt="Metasploit Table">
+                <div class="caption">Metasploit Table</div>
+                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/nmap.png" alt="NMAP">
+                <div class="caption">NMAP</div>
+                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/snort.png" alt="SNORT">
+                <div class="caption">SNORT</div>
+                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/asset finder.jpeg" alt="Asset Finder">
+                <div class="caption">Asset Finder</div>
+                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/subfinder.png" alt="Sub Finder">
+                <div class="caption">Sub Finder</div>
+                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/tenable nesus.png" alt="Tenable Nesus">
+                <div class="caption">Tenable Nesus</div>
+                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/the harvester.jpeg" alt="The Harvester">
+                <div class="caption">The Harvester</div>
+                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/Wappalyzer.png" alt="Wappalyzer">
+                <div class="caption">Wappalyzer</div>
+                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/webcheck petnest tool.png" alt="Web Check Pentest Tool">
+                <div class="caption">Web Check Pentest Tool</div>
+                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/wireshark.png" alt="wireshark">
+                <div class="caption">Wireshark</div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <h1>Projects</h1>
+            <ul>
+                <li>
+                    <div class="project-details">
+                        <h2>AudioCrypt Project</h2>
+                        <p>
+                            This project is a secure audio steganography tool developed to demonstrate how encrypted messages can be hidden within audio files using cryptographic and steganographic techniques. It uses AES-256 encryption and LSB-based data hiding methods, all wrapped in a GUI application built with Python and Tkinter.
+                        </p>
+                        <b>Features</b>
+                        <ol>
+                            <li>Supports embedding secret messages into <code>.wav</code> audio files using Least Significant Bit (LSB) steganography.</li>
+                            <li>Encrypts messages before hiding them using AES-256 (CBC mode) for added security.</li>
+                            <li>Allows password protection for decrypting hidden messages securely.</li>
+                            <li>Provides buttons to select audio files, input messages, encrypt & embed, or extract & decrypt.</li>
+                        </ol>
+                    </div>
+                </li>
+            </ul>
+             <div class="project-buttons">
+                <a href="#" class="project-button" onclick="showSection('AC')">View AudioCrypt Steps</a>
+                <a href="https://github.com/ritesh0x/AudioCrypt-main" target="_blank" rel="noopener noreferrer" class="project-button">Go to GitHub Repo</a>
+            </div>
+        </section>
+
+        <section id="AC" class="section">
+            <h1>Steps to use AudioCrypt Tool</h1>
+            <div class="pdf-container">
+                <iframe src="https://ritesh0x.github.io/Training-102-Report/Steps for AudioCrypt.pdf"></iframe>
+            </div>
+        </section>
+
+        <footer>
+           <a href="https://www.linkedin.com/in/ritesh0x/" target="_blank" rel="noopener noreferrer"> &copy; Ritesh Kumar Gupta</a>
+        </footer>
+    </div>
+    <script>
+        function showSection(id) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(id).classList.add('active');
+        }
+
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.gallery img');
+        const captions = document.querySelectorAll('.gallery .caption');
+
+        // THIS FUNCTION IS NOW CORRECTED
+        function showSlide(index) {
+            images.forEach((img, i) => {
+                img.classList.remove('active');
+                captions[i].classList.remove('active');
+            });
+            images[index].classList.add('active');
+            captions[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showSlide(currentIndex);
+        }
+
+        // Initialize the slideshow on page load
+        if (images.length > 0) {
+            showSlide(currentIndex);
+            setInterval(nextSlide, 2000); // Change image every 2 seconds
+        }
+    </script>
+</body>
+</html>
