@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correlation Analysis: Web Reliability & Conversion Rate</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+</head>
+<body>
+
+    <div id="preloader">
+        <div class="code-animation-box">
+            <span class="prompt">></span>
+            <span id="typing-text"></span>
+            <span class="cursor">_</span>
+        </div>
+    </div>
+    
+    <header>
+        <div class="container">
+            <h1><b>Web Reliability & Conversion Rate Analysis</b></h1>
+            <p>A Data Science approach to quantifying the ROI of technical web performance.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="metrics-section">
+            <h2>1. Technical Scenarios & Current Performance Metrics</h2>
+            <p class="section-description">Select a performance scenario to analyze the corresponding marketing metrics (CR and Bounce Rate).</p>
+            
+            <div class="selector-box">
+                <label for="page-selector">Select Technical Scenario:</label>
+                <select id="page-selector">
+                    <option value="data_p1_good">Scenario A: Optimized Speed (LCP < 1.5s)</option>
+                    <option value="data_p1_bad">Scenario B: Original Speed (LCP > 4.0s)</option>
+                    <option value="data_p2_good">Scenario C: Average Performance (LCP ≈ 2.0s)</option>
+                </select>
+                <button id="analyze-btn" onclick="loadPageData()">Load & Analyze Data</button>
+            </div>
+
+            <div class="kpi-grid">
+                <div class="kpi-card" id="kpi-lcp">
+                    <p class="kpi-title">Largest Contentful Paint (LCP)</p>
+                    <p class="kpi-value">-- s</p>
+                </div>
+                <div class="kpi-card" id="kpi-cr">
+                    <p class="kpi-title">Conversion Rate (CR)</p>
+                    <p class="kpi-value">-- %</p>
+                </div>
+                <div class="kpi-card" id="kpi-bounce">
+                    <p class="kpi-title">Bounce Rate</p>
+                    <p class="kpi-value">-- %</p>
+                </div>
+                <div class="kpi-card" id="kpi-server">
+                    <p class="kpi-title">First Byte Time (Server)</p>
+                    <p class="kpi-value">-- ms</p>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="chart-section">
+            <h2>2. Statistical Validation: LCP vs. Conversion Rate Correlation</h2>
+            <div class="chart-container">
+                <canvas id="correlationChart"></canvas>
+            </div>
+            <div class="analysis-summary">
+                <p><strong>Pearson Correlation Coefficient (r):</strong> <span id="r-value">--</span></p>
+                <p class="conclusion"><strong>Interpretation:</strong> <span id="r-conclusion">Load a scenario to view the correlation strength between speed and conversions.</span></p>
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="regression-section">
+            <h2>3. Predictive Model & Financial Impact Summary</h2>
+            
+            <div class="prediction-output">
+                <h3>Regression Model Summary (CR = constant + LCP factor...):</h3>
+                <p><strong>Model Accuracy (R²):</strong> <span id="r2-value">82%</span> (Indicates a high model fitness to the data) </p>
+                <p><strong>LCP Impact Coefficient (Beta₁):</strong> <span id="lcp-coef">--</span></p>
+            </div>
+            
+            <div class="recommendation-card">
+                <h3>Quantified Technical Recommendation 💰</h3>
+                <p class="recommendation-header">Projected ROI from Technical Optimization:</p>
+                <p id="recommendation-text">
+                    Select a scenario to analyze the technical metrics and see the predicted financial return of improving web speed.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 CSE Student Project. Focus: Web Performance, Data Analysis, and MarTech Strategy.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
