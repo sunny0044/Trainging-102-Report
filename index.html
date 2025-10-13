@@ -1,467 +1,1387 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Training TR-102 Report</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RKG - Training Report</title>
+    <link rel="icon" href="favicon.png" type="image/png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: url('bg.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #1E1E1E;
-        }
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 4px 8px rgba(123, 123, 123, 0.1);
-            border-radius: 10px;
-        }
-        li {
-            font-size: 19px;
-            /* font-weight: bold; */
-        }
+      :root {
+        --primary-bg: #0d1117;
+        --secondary-bg: #161b22;
+        --border-color: #30363d;
+        --text-color: #c9d1d9;
+        --accent-color: #58a6ff;
+        --accent-glow: rgba(88, 166, 255, 0.5);
+      }
 
-        header {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(to right, #000000, #2d4b7e);
-            padding: 10px 20px;
-            color: #fff;
-            border-radius: 10px 10px 0 0;
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--primary-bg);
+        color: var(--text-color);
+        overflow-x: hidden;
+      }
+
+      #particles-js {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      header img {
+        height: 45px;
+        opacity: 0.8;
+      }
+
+      .header-home-button {
+        background-color: var(--secondary-bg);
+        border: 1px solid var(--border-color);
+        color: var(--text-color);
+        padding: 8px 18px;
+        font-size: 1em;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.2s ease;
+        align-items: center;
+      }
+      .header-home-button:hover {
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+      }
+
+      .page {
+        display: none;
+      }
+      .page.active {
+        display: block;
+      }
+
+      #home {
+        text-align: center;
+        padding: 40px 20px;
+      }
+      #home h1 {
+        font-family: "Orbitron", sans-serif;
+        font-size: 3em;
+        color: #fff;
+        margin-bottom: 10px;
+      }
+      #home .subtitle {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+        color: var(--accent-color);
+      }
+
+      #about-me {
+        max-width: 800px;
+        margin: 0 auto 40px auto;
+        background: var(--secondary-bg);
+        padding: 25px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+      }
+      #about-me h2 {
+        text-align: center;
+        margin-top: 0;
+        font-family: "Orbitron", sans-serif;
+        color: var(--accent-color);
+      }
+      #about-me p {
+        text-align: justify;
+        line-height: 1.6;
+        font-size: 1.1em;
+      }
+
+      .nav-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin-top: 40px;
+      }
+      .report-nav-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+      .nav-button {
+        background-color: var(--secondary-bg);
+        border: 1px solid var(--border-color);
+        color: var(--text-color);
+        padding: 20px;
+        font-size: 1.1em;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .nav-button:hover {
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+        box-shadow: 0 0 15px var(--accent-glow);
+        transform: translateY(-5px);
+      }
+
+      .page-header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin: 40px 0;
+      }
+      .page-title {
+        font-family: "Orbitron", sans-serif;
+        font-size: 2.2em;
+        color: #fff;
+        margin: 0;
+        flex-grow: 1;
+        text-align: center;
+      }
+      .back-button {
+        background: var(--secondary-bg);
+        border: 1px solid var(--border-color);
+        color: var(--text-color);
+        padding: 8px 16px;
+        font-size: 0.9em;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+      }
+      .back-button:hover {
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+      }
+
+      .content-box {
+        background-color: var(--secondary-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 15px;
+      }
+      iframe {
+        width: 100%;
+        height: 70vh;
+        border: none;
+        border-radius: 5px;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 25px;
+        text-align: center;
+      }
+      .skill-item {
+        background-color: var(--secondary-bg);
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+      }
+      .skill-item:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent-color);
+      }
+      .skill-item img {
+        height: 50px;
+        margin-bottom: 10px;
+      }
+      .skill-item p {
+        margin: 0;
+        font-weight: bold;
+      }
+
+      /* --- LOADER STYLES --- */
+      .content-box {
+        position: relative; /* This is crucial for centering the loader */
+        min-height: 300px; /* Prevents the box from collapsing while loading */
+      }
+      .loader {
+        border: 8px solid #30363d; /* Light grey */
+        border-top: 8px solid var(--accent-color); /* Blue */
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 1.5s linear infinite;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        margin-left: -30px; /* Half of width */
+        margin-top: -30px; /* Half of height */
+        z-index: 10;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
         }
-        header img {
-            height: 50px;
-            margin: 5px 0;
-            max-width: 100%;
+        100% {
+          transform: rotate(360deg);
         }
-        header .home-button {
-            background-color: #3c566f;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 16px;
-            margin: 5px 0;
+      }
+
+      /* Logic to show/hide loader and iframe */
+      .content-box.is-loading .loader {
+        display: block;
+      }
+      .content-box.is-loading iframe {
+        visibility: hidden;
+      }
+      .content-box .loader {
+        display: none;
+      }
+      .content-box iframe {
+        visibility: visible;
+      }
+
+      /* --- SCROLL TO TOP BUTTON --- */
+      #scrollTopBtn {
+        display: none; /* Hidden by default */
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        background-color: var(--accent-color);
+        color: white;
+        cursor: pointer;
+        padding: 15px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        transition: opacity 0.3s;
+      }
+      #scrollTopBtn:hover {
+        opacity: 0.8;
+      }
+      .timeline-container {
+        position: relative;
+        padding: 20px 0;
+      }
+      .timeline-container::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        height: 100%;
+        border-left: 3px solid var(--border-color);
+      }
+      .timeline-item {
+        position: relative;
+        width: 50%;
+        margin-bottom: 40px;
+      }
+      .timeline-item:nth-child(odd) {
+        left: 0;
+        padding-right: 50px;
+        text-align: right;
+      }
+      .timeline-item:nth-child(even) {
+        left: 50%;
+        padding-left: 50px;
+        text-align: left;
+      }
+      .timeline-item::after {
+        content: "";
+        position: absolute;
+        top: 10px;
+        width: 20px;
+        height: 20px;
+        background-color: var(--secondary-bg);
+        border: 4px solid var(--accent-color);
+        border-radius: 50%;
+        z-index: 1;
+      }
+      .timeline-item:nth-child(odd)::after {
+        right: -10px;
+      }
+      .timeline-item:nth-child(even)::after {
+        left: -10px;
+      }
+      .timeline-content {
+        background-color: var(--secondary-bg);
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .timeline-content:hover {
+        border-color: var(--accent-color);
+        transform: scale(1.03);
+      }
+      .timeline-content h3 {
+        margin: 0 0 5px 0;
+        color: var(--accent-color);
+      }
+
+      .gallery-container {
+        max-width: 900px;
+        margin: auto;
+        overflow: hidden;
+        border-radius: 8px;
+      }
+      #gallery-slider {
+        display: flex;
+      }
+      #gallery-slider img {
+        width: 100%;
+        flex-shrink: 0;
+        object-fit: contain;
+        max-height: 70vh;
+      }
+
+      #day-viewer .viewer-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      #day-viewer .nav-arrow {
+        padding: 10px 25px;
+      }
+
+      .cert-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+      @media (min-width: 768px) {
+        .cert-grid {
+          grid-template-columns: 1fr 1fr;
         }
-        header .home-button:hover {
-            background-color: #000000;
+      }
+      .cert-column details {
+        background-color: var(--secondary-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 20px;
+      }
+      .cert-column summary {
+        font-family: "Orbitron", sans-serif;
+        font-weight: bold;
+        font-size: 1.2em;
+        cursor: pointer;
+        color: var(--accent-color);
+        list-style: none;
+      }
+      .cert-column summary::-webkit-details-marker {
+        display: none;
+      }
+      .cert-column .cert-image-container {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border-color);
+      }
+      .cert-column img {
+        max-width: 100%;
+        border-radius: 5px;
+      }
+
+      #project .project-details {
+        background: var(--secondary-bg);
+        border: 1px solid var(--border-color);
+        padding: 25px;
+        border-radius: 8px;
+        text-align: center;
+      }
+      #project h3 {
+        font-family: "Orbitron", sans-serif;
+        color: var(--accent-color);
+        font-size: 1.5em;
+      }
+      #project ol {
+        list-style-position: inside;
+        text-align: left;
+        max-width: 600px;
+        margin: 20px auto;
+      }
+      #project .project-links {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+      #project .project-links .nav-button {
+        padding: 15px 25px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 30px 20px;
+        margin-top: 40px;
+        border-top: 1px solid var(--border-color);
+      }
+      .social-links {
+        margin-bottom: 15px;
+      }
+      .social-links a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 1.8em;
+        margin: 0 15px;
+        transition: color 0.3s ease;
+      }
+      .social-links a:hover {
+        color: var(--accent-color);
+      }
+      /* --- MODAL (LIGHTBOX) STYLES --- */
+      .modal-overlay {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.9);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .modal-content {
+        background-color: var(--secondary-bg);
+        margin: 5vh auto;
+        padding: 20px;
+        border: 1px solid var(--border-color);
+        width: 90%;
+        max-width: 1200px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+      }
+      /* UPDATE this rule */
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .modal-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .modal-controls .nav-button {
+        padding: 10px 20px; /* Smaller padding for modal buttons */
+        font-size: 0.9em;
+      }
+      .modal-controls .nav-button i {
+        margin-right: 8px;
+      }
+      .modal-footer {
+        text-align: center;
+        margin-top: 20px;
+      }
+      /* --- RESPONSIVE VIDEO CONTAINER --- */
+      .video-container {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        margin: 30px auto; /* Centered with auto margins */
+        max-width: 800px; /* Limit max width for large screens */
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+      }
+      .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+      /* --- VIDEO THUMBNAIL & MODAL STYLES --- */
+      .video-thumbnail {
+        position: relative;
+        cursor: pointer;
+        max-width: 400px; /* Controls the small size of the thumbnail */
+        margin: 30px auto;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        transition: transform 0.3s ease;
+      }
+      .video-thumbnail:hover {
+        transform: scale(1.05);
+      }
+      .video-thumbnail img {
+        width: 100%;
+        display: block;
+      }
+      .play-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 40px;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.6);
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: background-color 0.3s ease;
+      }
+      .video-thumbnail:hover .play-icon {
+        background-color: rgba(255, 0, 0, 0.8);
+      }
+
+      .video-modal-content {
+        background-color: var(--secondary-bg);
+        margin: 5vh auto;
+        width: 90%;
+        max-width: 1200px;
+        border-radius: 8px;
+        position: relative;
+      }
+      /* --- LOADER STYLES --- */
+      .content-box {
+        position: relative;
+        min-height: 300px;
+        flex-grow: 1; /* Make it fill available space */
+      }
+      .loader {
+        border: 8px solid #30363d;
+        border-top: 8px solid var(--accent-color);
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 1.5s linear infinite;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -30px;
+        margin-top: -30px;
+        z-index: 10;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
         }
-        nav {
-            text-align: center;
-            margin-bottom: 20px;
+        100% {
+          transform: rotate(360deg);
         }
-        nav a {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 5px;
-            transition: background-color 0.3s ease;
+      }
+      .content-box.is-loading .loader {
+        display: block;
+      }
+      .content-box.is-loading iframe {
+        opacity: 0;
+      } /* Use opacity for fade transition */
+      .content-box .loader {
+        display: none;
+      }
+      .content-box iframe {
+        opacity: 1;
+        transition: opacity 0.4s ease;
+      }
+
+      /* --- SCROLL TO TOP BUTTON --- */
+      #scrollTopBtn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        background-color: var(--accent-color);
+        color: white;
+        cursor: pointer;
+        padding: 15px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        transition: opacity 0.3s;
+      }
+      #scrollTopBtn:hover {
+        opacity: 0.8;
+      }
+      footer p a {
+        color: var(--accent-color);
+        text-decoration: none;
+      }
+      footer p a:hover {
+        text-decoration: underline;
+      }
+
+      /* --- RESPONSIVE TIMELINE FOR MOBILE --- */
+      @media (max-width: 768px) {
+        .timeline-container::before {
+          left: 20px; /* Move the line to the left */
         }
-        .project-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center; /* Center the buttons */
-            margin: 20px 0;
+        .timeline-item {
+          width: 100%; /* Make items full-width */
+          padding-left: 70px;
+          padding-right: 25px;
         }
-        .project-button {
-            background-color: #888954;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 5px;
-            transition: background-color 0.3s ease;
-            display: inline-block;
-            padding: 10px 20px;
+        .timeline-item:nth-child(odd),
+        .timeline-item:nth-child(even) {
+          left: 0; /* Align all items to the left */
+          text-align: left;
         }
-        .project-button:hover {
-            background-color: #666;
+        .timeline-item::after,
+        .timeline-item:nth-child(odd)::after,
+        .timeline-item:nth-child(even)::after {
+          left: 10px; /* Move all dots to the line on the left */
         }
-        nav a:hover {
-            background-color: #2980b9;
-        }
-        .section {
-            display: none;
-        }
-        .section.active {
-            display: block;
-        }
-        h1, h2, p {
-            text-align: center;
-            color : #1E1E1E
-        }
-        .pdf-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .pdf-container iframe {
-            width: 100%;
-            height: 600px;
-            border: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-        .gallery {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: 10px;
-        }
-        .gallery img {
-            width: 100%;
-            display: none;
-            transition: opacity 1s ease-in-out;
-        }
-        .gallery img.active {
-            display: block;
-            opacity: 1;
-        }
-        .gallery .caption { 
-            text-align: center;
-            margin-top: 10px;
-            color: #000000;
-            font-size: 20px;
-            display: none;
-        }
-        .gallery .caption.active {
-            display: block;
-        }
-        .certificate-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .certificate-container img {
-            max-width: 50%;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            background: linear-gradient(to right, #2d4b7e, #000000);
-            color: #fff;
-            border-radius: 0 0 10px 10px;
-        }
-        footer a {
-            color: #3498db;
-            text-decoration: none;
-        }
-        footer a:hover {
-            text-decoration: underline;
-        }
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                align-items: center;
-            }
-            header .home-button {
-                font-size: 14px;
-                padding: 8px 16px;
-            }
-            header img {
-                height: 40px;
-            }
-            .pdf-container iframe {
-                height: 400px;
-            }
-            .gallery img {
-                width: 100%;
-            }
-        }
+      }
     </style>
-    </head>
-<body>
+  </head>
+  <body>
+    <div id="particles-js"></div>
     <div class="container">
-        <header>
-            <a href="https://www.gndec.ac.in/"><img src="gndecLogo.png" alt="GNDEC Logo"></a>
-            <a href="#" class="home-button" onclick="showSection('home')">Home</a>
-            <a href="https://anshinfotech.org/"><img src="aitlogo.png" alt="AIT Logo"></a>
-        </header>
-        
+      <header>
+        <a href="https://www.gndec.ac.in/" target="_blank" rel="noopener"
+          ><img src="gndecLogo.png" alt="GNDEC Logo"
+        /></a>
+        <button class="header-home-button" onclick="showPage('home')">
+          Home
+        </button>
+        <a href="https://anshinfotech.org/" target="_blank" rel="noopener"
+          ><img src="aitlogo.png" alt="AIT Logo"
+        /></a>
+      </header>
 
-        <section id="home" class="section active">
-            <h1>Training TR-102 Report</h1>
-            <p>By Sunny Kumar, URN 2302696 <br> Guru Nanak Dev Engineering College Ludhiana</p>
-            <h2>4 Week training at <br> Digi Boulevards</h2>
-        </section>
-        <nav>
-            <a style="background-color: rgb(0, 199, 156);" href="#" onclick="showSection('certificate')">Training Certificate</a>
-            <br>
-            <a style="background-color: rgb(0, 199, 156);" href="#" onclick="showSection('Final-Report')">Final Report</a>
-            <br>
-            <a href="#" onclick="showSection('day1')">Day 1</a>
-            <a href="#" onclick="showSection('day2')">Day 2</a>
-            <a href="#" onclick="showSection('day3')">Day 3</a>
-            <a href="#" onclick="showSection('day4')">Day 4</a>
-            <a href="#" onclick="showSection('day5')">Day 5</a>
-            <a href="#" onclick="showSection('day6')">Day 6</a>
-            <a href="#" onclick="showSection('day7')">Day 7</a>
-            <a href="#" onclick="showSection('day8')">Day 8</a>
-            <a href="#" onclick="showSection('day9')">Day 9</a>
-            <a href="#" onclick="showSection('day10')">Day 10</a>
-            <a href="#" onclick="showSection('day11')">Day 11</a>
-            <a href="#" onclick="showSection('day12')">Day 12</a>
-            <a href="#" onclick="showSection('day13')">Day 13</a>
-            <a href="#" onclick="showSection('day14')">Day 14</a>
-            <a href="#" onclick="showSection('day15')">Day 15</a>
-            <a href="#" onclick="showSection('day16')">Day 16</a>
-            <a href="#" onclick="showSection('day17')">Day 17</a>
-            <a href="#" onclick="showSection('day18')">Day 18</a>
-            <br>
-            <a href="#" onclick="showSection('gallery')">Gallery</a>
-             <br>
-            <a style="background-color: rgb(13, 0, 113);" href="#" onclick="showSection('projects')">Projects</a>
-        </nav>
-        <section id="certificate" class="section">
-            <h1>Certificate</h1>
-            <div class="certificate-container">
-                <img src="trsunny.jpg" alt="Training Certificate">
-                <img src="Skill_India.png" alt="Training Certificate">
-            </div>
-        </section> 
-        <section id="Final-Report" class="section">
-            <h1>Final Report</h1>
-            <div class="pdf-container">
-                <iframe src="https://0x.github.io/Training-102-Report/Final Report.pdf"></iframe>
-            </div>
-        </section> 
-        <section id="day1" class="section">
-            <h1>Training Report Day 1</h1>
-            <div class="pdf-container">
-                <iframe src="https://pankajxg.github.io/Training-102-Report/day 1.pdf"></iframe>
-            </div>
-        </section>
-        <section id="day2" class="section">
-            <h1>Training Report Day 2</h1>
-            <div class="pdf-container">
-                <iframe src="https://pankajxg.github.io/Training-102-Report/Day 2.pdf"></iframe>
-            </div>
-        </section>
-        <section id="day3" class="section">
-            <h1>Training Report Day 3</h1>
-            <div class="pdf-container">
-                <iframe src="https://pankajxg.github.io/Training-102-Report/Day 3.pdf"></iframe>
-            </div>
-        </section>
-        <section id="day4" class="section">
-            <h1>Training Report Day 4</h1>
-            <div class="pdf-container">
-                <iframe src="https://pankajxg.github.io/Training-102-Report/Day 4.pdf"></iframe>
-            </div>
-        </section>
-        <section id="day5" class="section">
-            <h1>Training Report Day 5</h1>
-            <div class="pdf-container">
-                <iframe src="https://pankajxg.github.io/Training-102-Report/Day 5.pdf"></iframe>
-            </div>
-        </section>
-        <section id="day6" class="section">
-            <h1>Training Report Day 6</h1>
-            <div class="pdf-container">
-                <iframe src="https://pankajxg.github.io/Training-102-Report/Day 6.pdf"></iframe>
-            </div>
-        </section>
-        <section id="day7" class="section">
-            <h1>Training Report Day 7</h1>
-            <div class="pdf-container">
-                <iframe src="https://pankajxg.github.io/Training-102-Report/Day 7.pdf"></iframe>
-            </div>
-        </section>
-        <section id="day8" class="section">
-            <h1>Training Report Day 8</h1>
-            <div class="pdf-container">
-                <iframe src="https://pankajxg.github.io/Training-102-Report/Day 8.pdf"></iframe>
-            </div>
-        </section>
-        <section id="day9" class="section">
-            <h1>Training Report Day 9</h1>
-            <div class="pdf-container">
-                <iframe src="https://pankajxg.github.io/Training-102-Report/Day 9.pdf"></iframe>
-            </div>
-        </section>
-        <section id="day10" class="section">
-            <h1>Training Report Day 10</h1>
-            <div class="pdf-container">
-                <iframe src="https://pankajxg.github.io/Training-102-Report/Day 10.pdf"></iframe>
-            </div>
-        </section>
-        <section id="day11" class="section">
-            <h1>Training Report Day 11</h1>
-            <div class="pdf-container">
-                <iframe src=""></iframe>
-            </div>
-        </section>
-        <section id="day12" class="section">
-            <h1>Training Report Day 12</h1>
-            <div class="pdf-container">
-                <iframe src="https://pankajxg.github.io/Training-102-Report/Day 12.pdf"></iframe>
-            </div>
-        </section>
-        <section id="day13" class="section">
-            <h1>Training Report Day 13</h1>
-            <div class="pdf-container">
-                <iframe src="https://pankajxg.github.io/Training-102-Report/Day 13.pdf"></iframe>
-            </div>
-        </section>
-        <section id="day14" class="section">
-            <h1>Training Report Day 14</h1>
-            <div class="pdf-container">
-                <iframe src="https://pankajxg.github.io/Training-102-Report/Day 14.pdf"></iframe>
-            </div>
-        </section>
-        <section id="day15" class="section">
-            <h1>Training Report Day 15</h1>
-            <div class="pdf-container">
-                <iframe src="https://pankajxg.github.io/Training-102-Report/Day 15.pdf"></iframe>
-            </div> 
-        </section>
-        <section id="day16" class="section">
-            <h1>Training Report Day 16</h1>
-            <div class="pdf-container">
-                <iframe src="https://pankajxg.github.io/Training-102-Report/Day 16.pdf"></iframe>
-            </div>
-        </section>
-        <section id="day17" class="section">
-            <h1>Training Report Day 17</h1>
-            <div class="pdf-container">
-                <iframe src="https://pankajxg.github.io/Training-102-Report/Day 17.pdf"></iframe>
-            </div>
-        </section>
-        <section id="day18" class="section">
-            <h1>Training Report Day 18</h1>
-            <div class="pdf-container">
-                <iframe src="https://pankajxg.github.io/Training-102-Report/Day 18.pdf"></iframe>
-            </div>
-       
-        </section>
+      <main>
+        <div id="home" class="page active">
+          <h1>Cybersecurity</h1>
+          <p class="subtitle">By Ritesh Kumar Gupta (URN 2302650)</p>
+          <div id="about-me">
+            <h2>About Me</h2>
+            <p>
+              I am Ritesh Kumar Gupta, a computer science student at Guru Nanak
+              Dev Engineering College, Ludhiana. My passion lies at the
+              intersection of cybersecurity, algorithms, and information
+              retrieval. This portfolio documents my experience during a
+              comprehensive four-week cybersecurity training at Ansh Infotech,
+              where I developed practical skills and created project like
+              <strong>AudioCrypt</strong>, a tool for audio steganography and
+              encryption. I am eager to apply my skills to solve challenging
+              problems in the tech industry.
+            </p>
+          </div>
+          <div class="nav-grid">
+            <button class="nav-button" onclick="showPage('skills')">
+              Skills & Technologies
+            </button>
+            <button class="nav-button" onclick="showPage('timeline')">
+              Training Timeline
+            </button>
+            <button class="nav-button" onclick="showPage('final-report')">
+              Final Report
+            </button>
+            <!-- <button class="nav-button" onclick="showPage('reports-grid')">Daily Diary (Grid View)</button> -->
+            <button class="nav-button" onclick="showPage('certificate')">
+              Certificates
+            </button>
+            <button class="nav-button" onclick="showPage('gallery')">
+              Tool Demonstrations
+            </button>
+            <button class="nav-button" onclick="showPage('project')">
+              Project
+            </button>
+          </div>
+        </div>
 
-        <section id="gallery" class="section">
-            <h2>Gallery</h2>
-            <div class="gallery">
-                <img src="https://raw.githubusercontent.com/sunny0044/Training-102-Report/main/Aircrack.jpeg" alt="Aircrack-ng">
-                <div class="caption">Aircrack-ng</div>
-                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/airgeddon.jpeg" alt="Airgeddon">
-                <div class="caption">Airgeddon</div>
-                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/Android HAcking.png" alt="Android HAcking">
-                <div class="caption">Android Hacking</div>
-                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/Burpsuite Pro.png" alt="Burpsuite Pro">
-                <div class="caption">Burpsuite Professional</div>
-                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/CAmphish.jpeg" alt="Camphish">
-                <div class="caption">Camphish</div>
-                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/zphisher.png" alt="Zphisher">
-                <div class="caption">Zphisher</div>
-                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/XERXES.jpeg" alt="XERXES">
-                <div class="caption">XERXES</div>
-                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/esp8266.jpeg" alt="ESP8266">
-                <div class="caption">ESP8266</div>
-                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/foxy proxy.png" alt="FOXY PROXY">
-                <div class="caption">Foxy Proxy</div>
-                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/metaspliotable.png" alt="Metasploit Table">
-                <div class="caption">Metasploit Table</div>
-                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/nmap.png" alt="NMAP">
-                <div class="caption">NMAP</div>
-                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/snort.png" alt="SNORT">
-                <div class="caption">SNORT</div>
-                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/asset finder.jpeg" alt="Asset Finder">
-                <div class="caption">Asset Finder</div>
-                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/subfinder.png" alt="Sub Finder">
-                <div class="caption">Sub Finder</div>
-                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/tenable nesus.png" alt="Tenable Nesus">
-                <div class="caption">Tenable Nesus</div>
-                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/the harvester.jpeg" alt="The Harvester">
-                <div class="caption">The Harvester</div>
-                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/Wappalyzer.png" alt="Wappalyzer">
-                <div class="caption">Wappalyzer</div>
-                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/webcheck petnest tool.png" alt="Web Check Pentest Tool">
-                <div class="caption">Web Check Pentest Tool</div>
-                <img src="https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/wireshark.png" alt="wireshark">
-                <div class="caption">Wireshark</div>
+        <div id="skills" class="page">
+          <div class="page-header">
+            <button class="back-button" onclick="showPage('home')">
+              Back to Menu
+            </button>
+            <h2 class="page-title">Skills & Technologies</h2>
+          </div>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <img src="icons/kali-linux.png" alt="Kali Linux" />
+              <p>Kali Linux</p>
             </div>
-        </section>
-
-        <section id="projects" class="section">
-            <h1>Projects</h1>
-            <ul>
-                <li>
-                    <div class="project-details">
-                        <h2>AudioCrypt Project</h2>
-                        <p>
-                            This project is a secure audio steganography tool developed to demonstrate how encrypted messages can be hidden within audio files using cryptographic and steganographic techniques. It uses AES-256 encryption and LSB-based data hiding methods, all wrapped in a GUI application built with Python and Tkinter.
-                        </p>
-                        <b>Features</b>
-                        <ol>
-                            <li>Supports embedding secret messages into <code>.wav</code> audio files using Least Significant Bit (LSB) steganography.</li>
-                            <li>Encrypts messages behttps://pankajxg.github.io/Training-102-Report/Day 11.pdffore hiding them using AES-256 (CBC mode) for added security.</li>
-                            <li>Allows password protection for decrypting hidden messages securely.</li>
-                            <li>Provides buttons to select audio files, input messages, encrypt & embed, or extract & decrypt.</li>
-                        </ol>
-                    </div>
-                </li>
-            </ul>
-             <div class="project-buttons">
-                <a href="#" class="project-button" onclick="showSection('AC')">View AudioCrypt Steps</a>
-                <a href="https://github.com/ritesh0x/AudioCrypt-main" target="_blank" rel="noopener noreferrer" class="project-button">Go to GitHub Repo</a>
+            <div class="skill-item">
+              <img src="icons/Nmap.png" alt="Nmap" />
+              <p>Nmap</p>
             </div>
-        </section>
-
-        <section id="AC" class="section">
-            <h1>Steps to use AudioCrypt Tool</h1>
-            <div class="pdf-container">
-                <iframe src="https://ritesh0x.github.io/Training-102-Report/Steps for AudioCrypt.pdf"></iframe>
+            <div class="skill-item">
+              <img src="icons/wireshark.png" alt="Wireshark" />
+              <p>Wireshark</p>
             </div>
-        </section>
+            <div class="skill-item">
+              <img src="icons/metasploit.png" alt="Metasploit" />
+              <p>Metasploit</p>
+            </div>
+            <div class="skill-item">
+              <img src="icons/burp-suite.png" alt="Burp Suite" />
+              <p>Burp Suite</p>
+            </div>
+            <div class="skill-item">
+              <img src="icons/aircrack.png" alt="Aircrack" />
+              <p>Aircrack</p>
+            </div>
+            <div class="skill-item">
+              <img src="icons/airgeddon.png" alt="Airgeddon" />
+              <p>Airgeddon</p>
+            </div>
+            <div class="skill-item">
+              <img src="icons/esp8266.png" alt="ESP8266" />
+              <p>ESP8266</p>
+            </div>
+            <div class="skill-item">
+              <img src="icons/foxy-proxy.png" alt="Foxy-Proxy" />
+              <p>Foxy-Proxy</p>
+            </div>
+            <div class="skill-item">
+              <img src="icons/pentest.png" alt="Pentest" />
+              <p>Pentest</p>
+            </div>
+            <div class="skill-item">
+              <img src="icons/snort.png" alt="SNORT" />
+              <p>SNORT</p>
+            </div>
+            <div class="skill-item">
+              <img src="icons/tenable-nesus.png" alt="Tenable-Nesus" />
+              <p>Tenable Nesus</p>
+            </div>
+            <div class="skill-item">
+              <img src="icons/try-hack-me.png" alt="try-hack-me" />
+              <p>Try Hack Me</p>
+            </div>
+            <div class="skill-item">
+              <img src="icons/wapplyser.png" alt="Wappalyzer" />
+              <p>Wappalyzer</p>
+            </div>
+            <div class="skill-item">
+              <img src="icons/web-check.xyz.png" alt="Web-Check.xyz" />
+              <p>Web-Check.xyz</p>
+            </div>
+          </div>
+        </div>
 
-        <footer>
-           <a href="https://www.linkedin.com/in/ritesh0x/" target="_blank" rel="noopener noreferrer"> &copy; Ritesh Kumar Gupta</a>
-        </footer>
+        <div id="timeline" class="page">
+          <div class="page-header">
+            <button class="back-button" onclick="showPage('home')">
+              Back to Menu
+            </button>
+            <h2 class="page-title">Interactive Training Timeline</h2>
+          </div>
+          <div class="timeline-container" id="timeline-items-container"></div>
+        </div>
+
+        <div id="final-report" class="page">
+          <div class="page-header">
+            <button class="back-button" onclick="showPage('home')">
+              Back to Menu
+            </button>
+            <h2 class="page-title">Final Report</h2>
+          </div>
+          <div class="content-box">
+            <div class="loader"></div>
+            <iframe
+              src="https://ritesh0x.github.io/Training-102-Report/Final Report.pdf"
+            ></iframe>
+          </div>
+        </div>
+        <div id="reports-grid" class="page">
+          <div class="page-header">
+            <button class="back-button" onclick="showPage('home')">
+              Back to Menu
+            </button>
+            <h2 class="page-title">Daily Diary</h2>
+          </div>
+          <div
+            class="nav-grid report-nav-grid"
+            id="day-buttons-container"
+          ></div>
+        </div>
+        <div id="certificate" class="page">
+          <div class="page-header">
+            <button class="back-button" onclick="showPage('home')">
+              Back to Menu
+            </button>
+            <h2 class="page-title">Training Certificates</h2>
+          </div>
+          <div class="cert-grid">
+            <div class="cert-column">
+              <details>
+                <summary>Certificate 1: Cybersecurity Training</summary>
+                <div class="cert-image-container">
+                  <img src="TC.jpg" alt="Training Certificate" />
+                </div>
+              </details>
+            </div>
+            <div class="cert-column">
+              <details>
+                <summary>Certificate 2: Skill India</summary>
+                <div class="cert-image-container">
+                  <img src="Skill_India.png" alt="Skill India Certificate" />
+                </div>
+              </details>
+            </div>
+            <div class="cert-column">
+              <details>
+                <summary>
+                  Certificate 3: Qualys Vulnerability Management
+                </summary>
+                <div class="cert-image-container">
+                  <img src="qualys.png" alt="Qualys Vulnerability Management" />
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+        <div id="gallery" class="page">
+          <div class="page-header">
+            <button class="back-button" onclick="showPage('home')">
+              Back to Menu
+            </button>
+            <h2 class="page-title">Tool Demonstrations</h2>
+          </div>
+          <div class="gallery-container"><div id="gallery-slider"></div></div>
+        </div>
+        <div id="project" class="page">
+          <div class="page-header">
+            <button class="back-button" onclick="showPage('home')">
+              Back to Menu
+            </button>
+            <h2 class="page-title">Project</h2>
+          </div>
+          <div class="project-details">
+            <h3>AudioCrypt Project</h3>
+            <p>
+              A secure audio steganography tool to hide encrypted messages
+              within audio files using AES-256 and LSB techniques.
+            </p>
+            <!-- <div class="video-container">
+              <iframe
+                src="https://www.youtube.com/embed/43s2JZ8JqiY"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+            </div> -->
+            <div
+              class="video-thumbnail"
+              onclick="openVideoModal('43s2JZ8JqiY')"
+            >
+              <img
+                src="https://img.youtube.com/vi/43s2JZ8JqiY/hqdefault.jpg"
+                alt="AudioCrypt Project Video Thumbnail"
+              />
+              <div class="play-icon"><i class="fas fa-play"></i></div>
+            </div>
+
+            <!-- <div id="video-modal" class="modal-overlay">
+              <div class="video-modal-content">
+                <button id="video-modal-close-btn" class="close-button">
+                  &times;
+                </button>
+                <div class="video-container" id="video-modal-container"></div>
+                <div class="modal-footer">
+                  <button class="back-button" onclick="closeVideoModal()">
+                    Back to Project
+                  </button>
+                </div>
+              </div>
+            </div> -->
+            <div id="video-modal" class="modal-overlay">
+              <div class="video-modal-content">
+                <!-- <div class="modal-header">
+                  <button class="back-button" onclick="closeVideoModal()">
+                    Back to Project
+                  </button>
+                  <button
+                    class="header-home-button"
+                    onclick="closeVideoModal(); showPage('home');"
+                  >
+                    Home
+                  </button>
+                </div> -->
+                <div class="modal-header">
+                  <button class="back-button" onclick="closeVideoModal()">
+                    Back to Project
+                  </button>
+                  <h2 class="page-title">Project</h2>
+                  <button
+                    class="header-home-button"
+                    onclick="closeVideoModal(); showPage('home');"
+                  >
+                    Home
+                  </button>
+                </div>
+
+                <div class="video-container" id="video-modal-container"></div>
+              </div>
+            </div>
+            <b>Features:</b>
+            <ol>
+              <li>
+                Embeds secret messages into <code>.wav</code> audio files.
+              </li>
+              <li>Encrypts messages before hiding using AES-256.</li>
+              <li>Password protection for decrypting hidden messages.</li>
+            </ol>
+            <div class="project-links">
+              <button class="nav-button" onclick="showPage('audiocrypt-steps')">
+                View Steps (PDF)</button
+              ><a
+                href="https://github.com/ritesh0x/AudioCrypt-main"
+                target="_blank"
+                rel="noopener"
+                class="nav-button"
+                >GitHub Repo</a
+              >
+            </div>
+          </div>
+        </div>
+        <div id="audiocrypt-steps" class="page">
+          <div class="page-header">
+            <button class="back-button" onclick="showPage('project')">
+              Back to Project
+            </button>
+            <h2 class="page-title">AudioCrypt Steps</h2>
+          </div>
+          <div class="content-box">
+            <div class="loader"></div>
+            <iframe
+              src="https://ritesh0x.github.io/Training-102-Report/Steps for AudioCrypt.pdf"
+            ></iframe>
+          </div>
+        </div>
+        <div id="pdf-modal" class="modal-overlay">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 id="modal-title" class="page-title"></h2>
+              <button id="modal-close-btn" class="close-button">&times;</button>
+            </div>
+
+            <div class="content-box is-loading">
+              <div class="loader"></div>
+              <iframe id="pdf-viewer-modal"></iframe>
+            </div>
+
+            <div class="modal-controls">
+              <button id="modal-prev-btn" class="nav-button nav-arrow">
+                Previous
+              </button>
+              <a id="modal-download-btn" class="nav-button" download
+                ><i class="fas fa-download"></i> Download</a
+              >
+              <a id="modal-newtab-btn" class="nav-button" target="_blank"
+                ><i class="fas fa-external-link-alt"></i> Open in New Tab</a
+              >
+              <button id="modal-next-btn" class="nav-button nav-arrow">
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button id="scrollTopBtn" title="Go to top">
+          <i class="fas fa-arrow-up"></i>
+        </button>
+        <button id="scrollTopBtn" title="Go to top">
+          <i class="fas fa-arrow-up"></i>
+        </button>
+      </main>
+
+      <footer>
+        <div class="social-links">
+          <a
+            href="https://www.linkedin.com/in/ritesh0x/"
+            target="_blank"
+            rel="noopener"
+            title="LinkedIn"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+          <a
+            href="https://github.com/ritesh0x"
+            target="_blank"
+            rel="noopener"
+            title="GitHub"
+            ><i class="fab fa-github"></i
+          ></a>
+          <a href="mailto:riteshkumargupta978@gmail.com" title="Email"
+            ><i class="fas fa-envelope"></i
+          ></a>
+        </div>
+        <p>
+          <a
+            href="https://github.com/ritesh0x/Training-102-Report"
+            target="_blank"
+            rel="noopener"
+            >Website Source Code</a
+          >
+        </p>
+        <p>&copy; 2025 Ritesh Kumar Gupta</p>
+      </footer>
     </div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        function showSection(id) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
-            document.getElementById(id).classList.add('active');
+      // --- SCRIPT START ---
+      let pages;
+      let pdfViewer, dayTitle, prevDayBtn, nextDayBtn, gallerySlider;
+      let galleryIndex = 0,
+        galleryInterval,
+        currentDay = 1;
+      const TOTAL_DAYS = 28;
+      const galleryMedia = [
+        {
+          src: "https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/nmap.png",
+          caption: "Nmap Scan Results",
+        },
+        {
+          src: "https://media.geeksforgeeks.org/wp-content/uploads/20220310231646/gfg.gif",
+          caption: "Sample GIF Demonstration",
+        },
+        {
+          src: "https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/wireshark.png",
+          caption: "Wireshark Packet Analysis",
+        },
+        {
+          src: "https://raw.githubusercontent.com/ritesh0x/Training-102-Report/main/Burpsuite%20Pro.png",
+          caption: "Burp Suite in Action",
+        },
+      ];
+
+      // --- Functions need to be global to be called by onclick attributes in HTML ---
+
+      function showPage(pageId) {
+        if (!pages) return;
+        pages.forEach((page) => page.classList.remove("active"));
+        document.getElementById(pageId).classList.add("active");
+        window.scrollTo(0, 0);
+        if (pageId === "gallery") {
+          startGallery();
+        } else {
+          stopGallery();
+        }
+      }
+
+      function openPdfModal(dayNumber) {
+        const modal = document.getElementById("pdf-modal");
+        modal.style.display = "block";
+        setTimeout(() => (modal.style.opacity = "1"), 10);
+        loadPdfInModal(dayNumber);
+      }
+
+      function closePdfModal() {
+        const modal = document.getElementById("pdf-modal");
+        modal.style.opacity = "0";
+        setTimeout(() => (modal.style.display = "none"), 300);
+      }
+
+      function loadPdfInModal(dayNumber) {
+        currentDay = dayNumber;
+        const pdfUrl = `https://ritesh0x.github.io/Training-102-Report/Day${currentDay}.pdf`;
+        const modalTitle = document.getElementById("modal-title");
+        const pdfViewer = document.getElementById("pdf-viewer-modal");
+        const contentBox = pdfViewer.parentElement;
+        const downloadBtn = document.getElementById("modal-download-btn");
+        const newTabBtn = document.getElementById("modal-newtab-btn");
+        const prevBtn = document.getElementById("modal-prev-btn");
+        const nextBtn = document.getElementById("modal-next-btn");
+        contentBox.classList.add("is-loading");
+        pdfViewer.onload = () => {
+          contentBox.classList.remove("is-loading");
+        };
+        modalTitle.textContent = `Day ${currentDay} Report`;
+        downloadBtn.href = pdfUrl;
+        newTabBtn.href = pdfUrl;
+        pdfViewer.src = pdfUrl;
+        prevBtn.style.visibility = currentDay === 1 ? "hidden" : "visible";
+        nextBtn.style.visibility =
+          currentDay === TOTAL_DAYS ? "hidden" : "visible";
+      }
+
+      function navigateModal(direction) {
+        const newDay = currentDay + direction;
+        if (newDay >= 1 && newDay <= TOTAL_DAYS) {
+          loadPdfInModal(newDay);
+        }
+      }
+      function openVideoModal(videoId) {
+        const modal = document.getElementById("video-modal");
+        const videoContainer = document.getElementById("video-modal-container");
+        videoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+        modal.style.display = "block";
+        setTimeout(() => (modal.style.opacity = "1"), 10);
+      }
+
+      function closeVideoModal() {
+        const modal = document.getElementById("video-modal");
+        const videoContainer = document.getElementById("video-modal-container");
+        modal.style.opacity = "0";
+        setTimeout(() => {
+          modal.style.display = "none";
+          videoContainer.innerHTML = "";
+        }, 300);
+      }
+      // --- NEW & UPDATED GALLERY FUNCTIONS ---
+      function slideNext() {
+        if (galleryIndex >= galleryMedia.length) return;
+        galleryIndex++;
+        gallerySlider.style.transition = "transform 0.8s ease-in-out";
+        gallerySlider.style.transform = `translateX(-${galleryIndex * 100}%)`;
+      }
+
+      function slidePrev() {
+        if (galleryIndex <= 0) {
+          gallerySlider.style.transition = "none";
+          galleryIndex = galleryMedia.length;
+          gallerySlider.style.transform = `translateX(-${galleryIndex * 100}%)`;
+          setTimeout(() => {
+            galleryIndex--;
+            gallerySlider.style.transition = "transform 0.8s ease-in-out";
+            gallerySlider.style.transform = `translateX(-${
+              galleryIndex * 100
+            }%)`;
+          }, 50);
+        } else {
+          galleryIndex--;
+          gallerySlider.style.transition = "transform 0.8s ease-in-out";
+          gallerySlider.style.transform = `translateX(-${galleryIndex * 100}%)`;
+        }
+      }
+
+      function startGallery() {
+        stopGallery();
+        galleryInterval = setInterval(slideNext, 3000);
+      }
+
+      function stopGallery() {
+        clearInterval(galleryInterval);
+      }
+
+      function setupGallery() {
+        gallerySlider.innerHTML = "";
+        galleryMedia.forEach((media) => {
+          const img = document.createElement("img");
+          img.src = media.src;
+          img.alt = media.caption;
+          gallerySlider.appendChild(img);
+        });
+        const firstClone = gallerySlider.firstElementChild.cloneNode(true);
+        gallerySlider.appendChild(firstClone);
+      }
+
+      function setupTimeline() {
+        const container = document.getElementById("timeline-items-container");
+        if (!container) return;
+        const topics = [
+          "Intro to Cybersecurity",
+          "Kali Linux Setup & Linux Fundamentals",
+          "Phishing Attack using CamPhish & Hack Camera",
+          "Phishing Attacks using Zphisher & ErisPhisher", // Week 1
+          "Android Hacking with ADB and Vysor",
+          "Network Security, Hierarchy & Subnetting Basics",
+          "Wi-Fi Deauthentication using ESP8266",
+          "Wi-Fi Deauthentication & WPA/WPA2 Password Cracking", // Week 2
+          " IP Addressing, MAC, and Subnetting Fundamentals",
+          "Firewall Implementation and SSH/FTP Control",
+          "Ubuntu Installation and Snort Setups",
+          "Introduction to DevOps and DevOps Tools", // Week 3
+          "Cryptography and Capture The Flag Challenges",
+          "Cloud Security under DevOps",
+          "Session Hijacking & Network Scanning",
+          " Wi-Fi Auditing, Phishing & Burp Suite Setup", //
+          "Website Auditing & Burp Suite in Windows",
+          "Penetration Testing & Information Gathering",
+          "Website Pentesting & DNS Tools",
+          " Metasploitable & Nessus Scan Practical", //
+          "",
+          " Burp Suite Setup & Website VAPT",
+          "",
+          "",
+          "Exploitation on Metasploitable Machine",
+          " Authentication Bypass – OTP Bypass",
+          " SQL Injection and SQLMap",
+          "Brute Force OTP Attack on Quantower (Sniper Mode)", // Week 4+
+        ];
+        for (let i = 1; i <= TOTAL_DAYS; i++) {
+          const item = document.createElement("div");
+          item.className = "timeline-item";
+          const content = document.createElement("div");
+          content.className = "timeline-content";
+          content.onclick = () => openPdfModal(i);
+          content.innerHTML = `<h3>Day ${i}</h3><p>${
+            topics[i - 1] || "Training Activities"
+          }</p>`;
+          item.appendChild(content);
+          container.appendChild(item);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        pages = document.querySelectorAll(".page");
+        gallerySlider = document.getElementById("gallery-slider");
+
+        gallerySlider.addEventListener("transitionend", () => {
+          if (galleryIndex >= galleryMedia.length) {
+            gallerySlider.style.transition = "none";
+            galleryIndex = 0;
+            gallerySlider.style.transform = `translateX(0)`;
+          }
+        });
+
+        // --- ALL KEYBOARD LISTENERS ---
+        window.addEventListener("keydown", (event) => {
+          const modal = document.getElementById("pdf-modal");
+          const galleryPage = document.getElementById("gallery");
+
+          // Listener for PDF Modal
+          if (modal.style.display === "block") {
+            if (event.key === "ArrowRight") {
+              event.preventDefault();
+              navigateModal(1);
+            } else if (event.key === "ArrowLeft") {
+              event.preventDefault();
+              navigateModal(-1);
+            } else if (event.key === "Escape") {
+              event.preventDefault();
+              closePdfModal();
+            }
+          }
+
+          // Listener for Gallery
+          if (galleryPage.classList.contains("active")) {
+            if (event.key === "ArrowRight") {
+              event.preventDefault();
+              slideNext();
+              startGallery(); // Reset the auto-slide timer
+            } else if (event.key === "ArrowLeft") {
+              event.preventDefault();
+              slidePrev();
+              startGallery(); // Reset the auto-slide timer
+            }
+          }
+        });
+
+        // Scroll to Top Button Logic
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+        if (scrollTopBtn) {
+          window.onscroll = () => {
+            if (
+              document.body.scrollTop > 100 ||
+              document.documentElement.scrollTop > 100
+            ) {
+              scrollTopBtn.style.display = "block";
+            } else {
+              scrollTopBtn.style.display = "none";
+            }
+          };
+          scrollTopBtn.onclick = () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          };
         }
 
-        let currentIndex = 0;
-        const images = document.querySelectorAll('.gallery img');
-        const captions = document.querySelectorAll('.gallery .caption');
+        // Modal close events
+        document.getElementById("modal-close-btn").onclick = closePdfModal;
+        document.getElementById("pdf-modal").onclick = function (event) {
+          if (event.target === this) {
+            closePdfModal();
+          }
+        };
+        document.getElementById("modal-prev-btn").onclick = () =>
+          navigateModal(-1);
+        document.getElementById("modal-next-btn").onclick = () =>
+          navigateModal(1);
 
-        // THIS FUNCTION IS NOW CORRECTED
-        function showSlide(index) {
-            images.forEach((img, i) => {
-                img.classList.remove('active');
-                captions[i].classList.remove('active');
-            });
-            images[index].classList.add('active');
-            captions[index].classList.add('active');
-        }
-
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % images.length;
-            showSlide(currentIndex);
-        }
-
-        // Initialize the slideshow on page load
-        if (images.length > 0) {
-            showSlide(currentIndex);
-            setInterval(nextSlide, 2000); // Change image every 2 seconds
-        }
+        // Initial setups
+        setupTimeline();
+        setupGallery();
+        particlesJS("particles-js", {
+          particles: {
+            number: {
+              value: 120, // More particles
+              density: { enable: true, value_area: 800 },
+            },
+            color: {
+              value: "#555e69", // Brighter color
+            },
+            shape: { type: ["circle", "triangle", "square"] },
+            opacity: {
+              value: 0.7, // More opaque
+              random: false,
+            },
+            size: { value: 3, random: true },
+            line_linked: {
+              enable: true,
+              distance: 150,
+              color: "#555e69", // Brighter line color
+              opacity: 0.6, // More opaque lines
+              width: 1.5, // Thicker lines
+            },
+            move: {
+              enable: true,
+              speed: 2,
+              direction: "none",
+              random: false,
+              straight: false,
+              out_mode: "out",
+              bounce: false,
+            },
+          },
+          interactivity: {
+            detect_on: "canvas",
+            events: {
+              onhover: { enable: true, mode: "repulse" },
+              onclick: { enable: true, mode: "push" },
+              resize: true,
+            },
+            modes: {
+              repulse: { distance: 100, duration: 0.4 },
+              push: { particles_nb: 4 },
+            },
+          },
+          retina_detect: true,
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
