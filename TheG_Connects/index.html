@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TheG Connect Hub</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Login Page -->
+  <div id="loginPage" class="page active">
+    <div class="login-card">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit" class="btn primary">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Main Content Page -->
+  <div id="mainPage" class="page">
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <h1>TheG Connect Hub</h1>
+        <button id="logoutBtn" class="btn small">Logout</button>
+      </div>
+      <div class="search-container">
+        <input id="searchInput" type="search" placeholder="Search businesses...">
+      </div>
+    </header>
+
+    <main class="wrap main-grid">
+      <!-- Add / Edit Business Panel -->
+      <aside class="panel form-panel" id="formPanel">
+        <h2>Add Your Business</h2>
+        <form id="businessForm">
+          <input type="text" id="name" placeholder="Business Name" required>
+          <input type="email" id="email" placeholder="Email" required>
+          <input type="text" id="contact" placeholder="Contact Number" required>
+          <input type="text" id="instagram" placeholder="Instagram Username" required>
+          <textarea id="about" rows="4" placeholder="About Your Business" required></textarea>
+          <button type="submit" class="btn primary">Save Profile</button>
+        </form>
+      </aside>
+
+      <!-- Profiles Panel -->
+      <section class="panel profiles-panel">
+        <h2>Business Profiles</h2>
+        <div id="profilesContainer" class="profiles-grid"></div>
+        <div class="empty-state" id="emptyState">No profiles yet. Add a business to get started.</div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Profile card template -->
+  <template id="profile-template">
+    <div class="card profile-card">
+      <h3 class="card-name"></h3>
+      <p class="card-about"></p>
+      <p><strong>Email:</strong> <a class="card-email" href="#"></a></p>
+      <p><strong>Contact:</strong> <a class="card-contact" href="#"></a></p>
+      <p><strong>Instagram:</strong> <a class="card-instagram" href="#" target="_blank"></a></p>
+      <button class="btn small promoteBtn">Promote (Meta AI)</button>
+      <div class="stats">Views: <span class="stat-views">132
+      </span> • Clicks: <span class="stat-clicks">34</span></div>
+      <button class="btn small collaborateBtn">Collaborate</button>
+    </div>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
