@@ -2,7 +2,7 @@
 
 ## From 18/06/2025 to 21/07/2025
 
-I am Ritesh Kumar Gupta, student of Guru Nanak Dev Engineering College, URN : 2302650, currently pursuing my B.Tech in Computer Science. This repository was created as part of my 4-week industrial training at **Ansh Infotech**,Model Town Ext. D-Block, Ludhiana - 141003.
+I am Sunny Kumar, student of Guru Nanak Dev Engineering College, URN : 2302696, currently pursuing my B.Tech in Computer Science. This repository was created as part of my 4-week industrial training at **Ansh Infotech**,Model Town Ext. D-Block, Ludhiana - 141003.
 
 ## Repository Contents
 
@@ -24,4 +24,4 @@ For more details, feel free to connect with me on [LinkedIn](https://www.linkedi
 
 ---
 
-© 2025 Ritesh Kumar Gupta
+© 2025 sunny kumar
