@@ -1,14 +1,14 @@
-# 4-Week Industrial Training at Ansh Infotech
+# 4-Week Industrial Training at DigiBoulevards
 
 ## From 18/06/2025 to 21/07/2025
 
-I am Sunny Kumar, student of Guru Nanak Dev Engineering College, URN : 2302696, currently pursuing my B.Tech in Computer Science. This repository was created as part of my 4-week industrial training at **Ansh Infotech**,Model Town Ext. D-Block, Ludhiana - 141003.
+I am Sunny Kumar, student of Guru Nanak Dev Engineering College, URN : 2302696, currently pursuing my B.Tech in Computer Science. This repository was created as part of my 4-week industrial training at **DigiBoulevards**,Model Town Ext. D-Block, Ludhiana - 141003.
 
 ## Repository Contents
 
 This repository contains:
 
-* Daily reports covering the TR-102 cybersecurity training.
+* Daily reports covering the TR-102 Digital Marketing.
 * Project files (AudioCrypt).
 * Final project report and presentation.
 * `index.html` file for GitHub Pages deployment
